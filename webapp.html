@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VibeCheck 💫</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: popin 1s ease-out;
+    }
+
+    @keyframes popin {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .mood-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      font-size: 2rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px;
+      background-color: #ffffffaa;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ffffff;
+    }
+
+    .compliment-box {
+      margin-top: 30px;
+      padding: 20px;
+      max-width: 600px;
+      background-color: #fff5;
+      border-radius: 20px;
+      font-size: 1.5rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1.5rem;
+      background-color: #ffcbcb;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .back-button:hover {
+      transform: scale(1.1);
+      background-color: #ffb3b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✨ VibeCheck ✨</h1>
+  <p>Select your current vibe and get a custom compliment:</p>
+
+  <div class="mood-buttons">
+    <button onclick="getCompliment('happy')">😊</button>
+    <button onclick="getCompliment('cool')">😎</button>
+    <button onclick="getCompliment('sad')">😭</button>
+    <button onclick="getCompliment('angry')">😡</button>
+    <button onclick="getCompliment('sleepy')">😴</button>
+    <button onclick="getCompliment('mindblown')">🤯</button>
+  </div>
+
+  <div id="compliment" class="compliment-box"></div>
+
+  <!-- Back to Resume Button -->
+  <button class="back-button" onclick="window.location.href='index.html'">Back to Resume</button>
+
+  <script>
+    const compliments = {
+      happy: [
+        "You're sunshine wrapped in a human form 🌞✨",
+        "You radiate good vibes like a disco ball of joy 🪩🕺",
+        "You're the plot twist everyone needed in their day 📖💫"
+      ],
+      cool: [
+        "You’re cooler than the other side of the pillow 😎🧊",
+        "James Bond called. He wants your swag back. 🎩🍸",
+        "NASA’s tracking you because your coolness is out of this world 🚀🌌"
+      ],
+      sad: [
+        "Hey, even clouds cry — but they still make rainbows 🌈☁️",
+        "You're stronger than a triple-shot espresso on a Monday 💪☕",
+        "The world is better with you in it. Don't forget it 💖"
+      ],
+      angry: [
+        "You're fire. 🔥 But like, the kind that forges diamonds 💎",
+        "Take that rage and build an empire, legend 🏰⚔️",
+        "Your passion is power — just aim it wisely ⚡🧠"
+      ],
+      sleepy: [
+        "Dreams are just your brain showing off. Let it cook 💤🍳",
+        "You're the CEO of cozy 😴👑",
+        "You deserve a nap on a throne made of blankets 🛏️👸"
+      ],
+      mindblown: [
+        "You just unlocked a new brain level. Upgrade complete 🧠💥",
+        "You're thinking in 4D chess while the rest of us play Uno ♟️🃏",
+        "Your neurons are doing backflips and I love that for you 🤸‍♂️🧠"
+      ]
+    };
+
+    function getCompliment(mood) {
+      const complimentArray = compliments[mood];
+      const randomIndex = Math.floor(Math.random() * complimentArray.length);
+      const compliment = complimentArray[randomIndex];
+
+      const box = document.getElementById('compliment');
+      box.innerHTML = compliment;
+      box.style.animation = 'none';
+      void box.offsetWidth; // reset animation
+      box.style.animation = 'fadeIn 0.5s ease-in-out';
+    }
+  </script>
+</body>
+</html>
